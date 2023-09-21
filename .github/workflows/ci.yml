@@ -34,5 +34,5 @@ jobs:
           label: ${{ matrix.os }} ${{ matrix.python-version }}
           status: ${{ job.status }}
           color: ${{ job.status == 'success' && 'green' || 'red'}}
-          path: '.github/badges/${{ matrix.os }}_${{ matrix.python-version }}.svg'
+          path: '.github/${{ matrix.os }}_${{ matrix.python-version }}.svg'
           icon: github
