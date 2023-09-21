@@ -31,8 +31,8 @@ jobs:
       - name: Set up status badges
         uses: emibcn/badge-action@v2.0.2
         with:
-          label: ${{ matrix }}
+          label: ${{ matrix.os }} ${{ matrix.python-version }}
           status: ${{ job.status }}
           color: ${{ job.status == 'success' && 'green' || 'red'}}
-          path: '.github/badges/${{ matrix }}.svg'
+          path: '.github/badges/${{ matrix.os }}_${{ matrix.python-version }}.svg'
           icon: github
