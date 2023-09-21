@@ -26,13 +26,13 @@ jobs:
         run: make lint
       - name: test
         run: make test
-      - name: format
+      - name: format  
         run: make format
-      - name: Set up status badges
-        uses: emibcn/badge-action@v2.0.2
+      - name: Build status badge
+        uses: RubbaBoy/BYOB@v1.3.0
         with:
-          label: ${{ matrix.os }} ${{ matrix.python-version }}
-          status: ${{ job.status }}
-          color: ${{ job.status == 'success' && 'green' || 'red'}}
-          path: '.github/${{ matrix.os }}_${{ matrix.python-version }}.svg'
-          icon: github
+          NAME: ${{ matrix.os }} ${{ matrix.python-version }}
+          LABEL: ${{ matrix.os }} ${{ matrix.python-version }}
+          STATUS: ${{ job.status }}
+          COLOR: ${{ job.status == 'success' && 'green' || job.status == 'failure' && 'red' || 'yellow' }}
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
