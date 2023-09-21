@@ -28,3 +28,11 @@ jobs:
         run: make test
       - name: format
         run: make format
+      - name: Set up status badges
+        uses: emibcn/badge-action@v2.0.2
+        with:
+          label: ${{ matrix }}
+          status: ${{ job.status }}
+          color: ${{ job.status == 'success' && 'green' || 'red'}}
+          path: '.github/badges/${{ matrix }}.svg'
+          icon: github
