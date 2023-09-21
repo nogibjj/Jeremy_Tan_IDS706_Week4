@@ -28,16 +28,11 @@ jobs:
         run: make test
       - name: format  
         run: make format
-      - name: Generate and Upload Badge
-        uses: mikeal/gh-badge@v1
-        with:
-          text: ${{ matrix.os }} ${{ matrix.python-version }}
-          status: ${{ job.status }}
-          color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
-        env:
-          GH_BADGE_ACTION_OUTPUT: '${{ matrix.os }}_${{ matrix.python-version }}.svg'
+      - name: Generate Badge URL
+        id: generate_badge
+        run: echo "::set-output name=badge_url::https://img.shields.io/badge/Build-${{ matrix.os }}_${{ matrix.python-version }}-brightgreen"
       - name: Upload Badge
         uses: actions/upload-artifact@v2
         with:
             name: ${{ matrix.os }} ${{ matrix.python-version }}
-            path: ${{ matrix.os }}_${{ matrix.python-version }}.svg
+            path: *.svg
