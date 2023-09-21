@@ -28,11 +28,16 @@ jobs:
         run: make test
       - name: format  
         run: make format
-      - name: Build status badge
-        uses: RubbaBoy/BYOB@v1.3.0
+      - name: Generate and Upload Badge
+        uses: mikeal/gh-badge@v1
         with:
-          NAME: ${{ matrix.os }} ${{ matrix.python-version }}
-          LABEL: ${{ matrix.os }} ${{ matrix.python-version }}
-          STATUS: ${{ job.status }}
-          COLOR: ${{ job.status == 'success' && 'green' || job.status == 'failure' && 'red' || 'yellow' }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          text: ${{ matrix.os }} ${{ matrix.python-version }}
+          status: ${{ job.status }}
+          color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
+        env:
+          GH_BADGE_ACTION_OUTPUT: '${{ matrix.os }}_${{ matrix.python-version }}.svg'
+      - name: Upload Badge
+        uses: actions/upload-artifact@v2
+        with:
+            name: ${{ matrix.os }} ${{ matrix.python-version }}
+            path: ${{ matrix.os }}_${{ matrix.python-version }}.svg
