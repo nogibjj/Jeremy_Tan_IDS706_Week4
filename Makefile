@@ -1,14 +1,14 @@
 install:
-	pip install --upgrade pip &&\
-		pip install -r requirements.txt
+	python${{ matrix.python-version }} -m pip install --upgrade pip &&\
+		python${{ matrix.python-version }} -m pip install --prefer-binary -r requirements.txt
+		
+lint:
+	python${{ matrix.python-version }} -m pylint your_script.py
 
 test:
-	python -m pytest -vv --cov=main test_*.py
+	python${{ matrix.python-version }} -m pytest test_*.py
 
-format:	
-	black *.py 
+format:
+	python${{ matrix.python-version }} -m black *.py
 
-lint:
-	pylint --disable=R,C --ignore-patterns=test_.*?py *.py
-		
 all: install lint format test 
