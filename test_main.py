@@ -3,15 +3,18 @@ Test goes here
 
 """
 
-from main import listmax
+from main import os_and_sys_version
 
 
-def test_max():
-    """Function calling listMax"""
+def test_os_and_sys_version():
+    """Function calling os_and_sys_version"""
+    python_version, os_name = os_and_sys_version()
+    python_version_check = [3.7, 3.8, 3.9]
+    os_name_check = ["Windows", "Linux"]
 
-    list1 = [77, 33, 19, 99, 42, 6, 27, 4]
-    list2 = [-3, -42, -99, -1000, -999, -88, -77]
-    list3 = [425, 59, -3, 77, 0, 36]
-    assert listmax(list1) == 99
-    assert listmax(list2) == -3
-    assert listmax(list3) == 425
+    assert python_version in python_version_check
+    assert os_name in os_name_check
+
+
+if __name__ == "__main__":
+    test_os_and_sys_version()
