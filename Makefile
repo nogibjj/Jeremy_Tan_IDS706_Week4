@@ -1,6 +1,6 @@
 install:
-	pip install --upgrade pip &&\
-		pip install --prefer-binary -r requirements.txt
+	python pip install --upgrade pip &&\
+		python pip install --prefer-binary -r requirements.txt
 test:
 	python -m pytest -vv --cov=main test_*.py
 
