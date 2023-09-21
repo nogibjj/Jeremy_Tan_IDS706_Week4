@@ -35,4 +35,4 @@ jobs:
           LABEL: ${{ matrix.os }} ${{ matrix.python-version }}
           STATUS: ${{ job.status }}
           COLOR: ${{ job.status == 'success' && 'green' || job.status == 'failure' && 'red' || 'yellow' }}
-          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
