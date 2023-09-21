@@ -28,11 +28,3 @@ jobs:
         run: make test
       - name: format  
         run: make format
-      - name: Generate Badge URL
-        id: generate_badge
-        run: echo "::set-output name=badge_url::https://img.shields.io/badge/Build-${{ matrix.os }}_${{ matrix.python-version }}-brightgreen"
-      - name: Upload Badge
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ matrix.os }}_${{ matrix.python-version }}
-          path: *.svg
